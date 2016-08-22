@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <script type='text/javascript' src='bower_components/angular/angular.min.js'></script>
+  <script type='text/javascript' src='bower_components/angular-route/angular-route.min.js'></script>
+  <script type='text/javascript' src='ctrl.js'></script>
+  <script type='text/javascript' src='routes.js'></script>
+  <script type='text/javascript' src='app.js'></script>
+</head>
+<body ng-app='App' ng-controller='Controller'>
+
+  <ul>
+    <li><a href='#/'>Home</a></li>
+    <li><a ng-click="instaAuth()">Log In</a></li>
+  </ul>
+  <div ng-view ></div>
+</body>
+</html>
