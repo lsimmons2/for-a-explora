@@ -4,15 +4,19 @@ angular.module('routes', []).config(['$routeProvider', function($routeProvider){
                         templateUrl: 'views/home.html',
                             controller: 'Controller'
 			    })
+                .when('/sah', {
+                        templateUrl: 'views/sah.html',
+                            controller: 'Controller'
+			    })
                 .when('/login', {
                         templateUrl: 'views/login.html',
                             controller: 'Controller'
 			    })
-		.when('/play', {
-			templateUrl: 'views/play.html',
-			    controller: 'Controller'
-			    })
-		.otherwise({
-			redirectTo: '/home'
-		    });
+                .when('/play', {
+                        templateUrl: 'views/play.html',
+                            controller: 'Controller'
+                            })
+                .otherwise({
+                        redirectTo: '/home'
+                            });
         }]);

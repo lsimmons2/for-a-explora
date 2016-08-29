@@ -2,6 +2,7 @@
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
+  <!--<base href="/">-->
   <script type='text/javascript' src='bower_components/angular/angular.min.js'></script>
   <script type='text/javascript' src='bower_components/angular-route/angular-route.min.js'></script>
   <script type='text/javascript' src='ctrl.js'></script>
@@ -12,7 +13,10 @@
 
   <ul>
     <li><a href='#/'>Home</a></li>
-    <li><a ng-click="instaAuth()">Log In</a></li>
+    <li><a ng-click='test()'>test</a></li>
+    <li><a href='#/sah'>sah</a></li>
+    <li><a href='#/login'>Log In Page</a></li>
+    <li><a ng-click='logout()'>Log out</a></li>
   </ul>
   <div ng-view ></div>
 </body>
