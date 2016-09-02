@@ -29,7 +29,20 @@ app.use(function(req, res, next) {
         }
     });
 
-
+app.get('/follows', function(req, res){
+        var endpoint = 'https://api.instagram.com/v1/users/self/media/recent?access_token=' + req.session.user.token;
+        request.get(endpoint, function(err, response, body){
+                if(!err && response.statusCode == 200){
+                    res.send(JSON.parse(body).data);
+                    var imgLinks = JSON.parse(body).data;
+                } else{
+                    console.log('Error calling Insta API');
+                    //console.log('err', err);
+                    //console.log('response', response);
+                    //console.log('body', body);
+                }
+            })
+            });
 
 app.get('/logout', function(req, res){
         req.session.destroy(function(err){
@@ -45,18 +58,6 @@ app.get('/logout', function(req, res){
 });
 
 
-app.get('/test', function(req, res){
-        console.log('testing here...');
-        console.log('req.session.user:', req.session.user);
-        if(req.session.user){
-            //var signedin = true;
-            res.status(200).send('logged in')
-        } else {
-            //var signedin = false;
-            res.status(200).send('not logged in');
-        }
-        //res.status(200).json({'message':'tested','signedin?':signedin});
-    });
 
 app.get('/panel', function(req, res){
         //redirects here b/c req is coming from Insta API
@@ -77,7 +78,7 @@ app.get('/panel', function(req, res){
                          function(error, response, body){
                              if(!error && response.statusCode == 200){
                                  console.log('Success making POST to Insta API for token, making new session object');
-                                 console.log('token');
+                                 console.log('token:');
                                  console.log(JSON.parse(body).access_token);
                                  req.session.user = {};
                                  req.session.user.token = JSON.parse(body).access_token;
@@ -85,8 +86,9 @@ app.get('/panel', function(req, res){
                                  res.redirect('/#/play');
                              }
                              else{
-                                 console.log(response);
-                                 console.log(body);
+                                 //console.log(response);
+                                 //console.log(body);
+                                 console.log(error);
                                  res.redirect('/#/login');
                              }
                          }
@@ -94,6 +96,20 @@ app.get('/panel', function(req, res){
                          );
         }
     });
+
+app.get('/test', function(req, res){
+        console.log('testing here...');
+        console.log('req.session.user:', req.session.user);
+        if(req.session.user){
+            //var signedin = true;
+            res.status(200).send('logged in')
+        } else {
+            //var signedin = false;
+            res.status(200).send('not logged in');
+        }
+        //res.status(200).json({'message':'tested','signedin?':signedin});
+    });
+
 
 var port = process.env.PORT || 80;
 app.listen(port, function(){

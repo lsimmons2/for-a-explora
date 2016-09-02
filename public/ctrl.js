@@ -8,15 +8,26 @@ angular.module('ctrl', []).controller('Controller', function($scope, $http, $loc
                 console.log(err);
             });
     };
+
     $scope.logout = function(){
         $http.get('/logout')
         .then(function(data){
                 console.log('Session ended');
-                console.log(data);
                 $location.path('/login');
             }, function(err){
                 console.log('Session not ended: ', err);
             })
     };
+
+    $scope.follows = function(){
+        $http.get('/follows')
+        .then(function(data){
+                console.log(data);
+                $scope.pix = data.data;
+            }, function(err){
+                console.log(err);
+            })
+    };
+    
     });
 
