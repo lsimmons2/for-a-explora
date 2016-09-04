@@ -1,23 +1,45 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang='en' ng-app='App'>
 <head>
   <meta charset='UTF-8'>
   <!--<base href="/">-->
-  <script type='text/javascript' src='bower_components/angular/angular.min.js'></script>
-  <script type='text/javascript' src='bower_components/angular-route/angular-route.min.js'></script>
+  <script type='text/javascript' src='bower_components/angular/angular.js'></script>
+  <script type='text/javascript' src='bower_components/angular-route/angular-route.js'></script>
+  <script type='text/javascript' src='bower_components/angular-strap/dist/angular-strap.js'></script>
+  <script type='text/javascript' src='bower_components/angular-strap/dist/angular-strap.tpl.js'></script>
   <script type='text/javascript' src='ctrl.js'></script>
   <script type='text/javascript' src='routes.js'></script>
+  <script type='text/javascript' src='service.js'></script>
   <script type='text/javascript' src='app.js'></script>
+  <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css'>
+  <link rel='stylesheet' href='style.css'>
 </head>
-<body ng-app='App' ng-controller='Controller'>
 
-  <ul>
-    <li><a href='#/'>Home</a></li>
-    <li><a ng-click='test()'>test</a></li>
-    <li><a href='#/sah'>sah</a></li>
-    <li><a href='#/login'>Log In Page</a></li>
-    <li><a ng-click='logout()'>Log out</a></li>
-  </ul>
+<body ng-controller='Controller'>
+  <nav class="navbar navbar-default" role="navigation" bs-navbar>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">For a</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href='#/'>Home</a>
+      </li>
+      <li>
+          <a href='#/profile'>Profile</a>
+      </li>
+    </ul>
+    <ul id='NAVlogInOut' class="nav navbar-nav">
+      <li class='NAVlogInOut' ng-hide='in'>
+        <a href='https://api.instagram.com/oauth/authorize/?client_id=7953d7ce6a4e4a98bda5ccda117c6399&redirect_uri=http://localhost/panel&response_type=code&scope=follower_list+public_content'>Log in</a>
+      </li>
+      <li class='NAVlogInOut' ng-show='in'>
+        <a ng-click='logout()'>Log out</a>
+      </li>
+    </ul>
+  </nav>
+  <input type='button' value='test' ng-click='test()'></input>
+  <input type='button' value='User follows...' ng-click='follows()'></input>
+  <input ng-click='ownPix()' type='button' value="User's pictures"> </input>
   <div ng-view ></div>
 </body>
 </html>

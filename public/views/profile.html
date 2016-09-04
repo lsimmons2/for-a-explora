@@ -1,0 +1,9 @@
+<h1>Your profile</h1>
+<h>Your trips:</h3>
+<h3>You follow:</h3>
+<div ng-repeat='user in follows'>
+  sup
+</div>
+<h3>Your pics:</h3>
+{{pix}}
+<img ng-repeat='pic in pix' alt='sah' ng-src='{{pic.images.thumbnail.url}}'></img>

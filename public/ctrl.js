@@ -22,12 +22,21 @@ angular.module('ctrl', []).controller('Controller', function($scope, $http, $loc
     $scope.follows = function(){
         $http.get('/follows')
         .then(function(data){
+						$scope.follows = data.data;
+            	console.log(data.data);
+            }, function(err){
+              console.log(err);
+            })
+    };
+
+    $scope.ownPix = function(){
+        $http.get('/ownPix')
+        .then(function(data){
+						$scope.pix = data.data;
                 console.log(data);
-                $scope.pix = data.data;
             }, function(err){
                 console.log(err);
             })
     };
-    
-    });
 
+    });

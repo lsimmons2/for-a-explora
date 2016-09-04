@@ -2,19 +2,23 @@ angular.module('routes', []).config(['$routeProvider', function($routeProvider){
             $routeProvider
                 .when('/home', {
                         templateUrl: 'views/home.html',
-                            controller: 'Controller'
+                            controller: 'Controller',
+                            restricted: false
 			    })
-                .when('/sah', {
-                        templateUrl: 'views/sah.html',
-                            controller: 'Controller'
+                .when('/profile', {
+                        templateUrl: 'views/profile.html',
+                            controller: 'Controller',
+                            restricted: true,
 			    })
                 .when('/login', {
                         templateUrl: 'views/login.html',
-                            controller: 'Controller'
+                            controller: 'Controller',
+                            restricted: false,
 			    })
-                .when('/play', {
+                .when('/hashtag', {
                         templateUrl: 'views/play.html',
-                            controller: 'Controller'
+                            controller: 'Controller',
+
                             })
                 .otherwise({
                         redirectTo: '/home'
