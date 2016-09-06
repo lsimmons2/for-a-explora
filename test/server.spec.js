@@ -1,23 +1,41 @@
 var chai = require('chai');
 //var assert = chai.assert;
-//var should = chai.should();
+var should = chai.should();
 var expect = chai.expect;
-//var chaiHttp = require('chai-http');
-//var server = require('../server.js');
-//chai.use(chaiHttp);
+var chaiHttp = require('chai-http');
+var server = require('../server.js');
+chai.use(chaiHttp);
+
+describe('test', function(){
+  it('a equals a', function(done){
+    expect('a').to.equal('a');
+    done();
+  });
+  it('/test', function(done){
+    chai.request(server)
+    .get('/test')
+    .field('session', '')
+    .end(function(err, res){
+      res.body.should.be.a('object');
+      done();
+    });
+  });
+});
 
 describe('/loggedIn', function(){
   it('should send 200 status and boolean body', function(done){
-    //chai.request(server)
-    //.get('/loggedIn')
-    //.end(function(err, res){
-      //res.should.have.status(200);
-      //res.body.should.be.a('boolean');
-      expect(5).to.equal(5);
+    chai.request(server)
+    .get('/loggedIn')
+    .end(function(err, res){
+      res.should.have.status(200);
+      res.body.should.be.a('boolean');
       done();
-    //});
+    });
   });
 });
+
+
+
 
 /*describe('/ownPix', function(){
   it('response body should be array of 20', function(done){
